@@ -1,7 +1,7 @@
 import {combineReducers} from 'redux';
 
-import money from './money';
 import spent from './spent';
+import money from './money';
 
 const reducers = combineReducers({
   spent,

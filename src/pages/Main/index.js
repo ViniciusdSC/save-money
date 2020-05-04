@@ -23,11 +23,11 @@ const Main = () => {
 
   const daySpent = useSelector(({spent}) => {
     if (spent[key] && spent[key][date.getDate()]) {
-      console.log(spent[key][date.getDate()]);
       return spent[key][date.getDate()].reduce(
         (accumulateSpent, spentValue) => spentValue + accumulateSpent,
       );
     }
+    console.log('out if');
     return 0;
   });
 
@@ -79,7 +79,7 @@ const Main = () => {
     <View>
       <SpentItem
         onPress={() =>
-          navigation.push('AddSpent', {type: TYPES.ADD_MONTH_SPENT})
+          navigation.navigate('AddSpent', {type: TYPES.ADD_MONTH_SPENT})
         }>
         <>
           <SpentTitle>Gasto Mensal</SpentTitle>
@@ -89,7 +89,7 @@ const Main = () => {
       </SpentItem>
       <SpentItem
         onPress={() =>
-          navigation.push('AddSpent', {type: TYPES.ADD_WEEK_SPENT})
+          navigation.navigate('AddSpent', {type: TYPES.ADD_WEEK_SPENT})
         }>
         <>
           <SpentTitle>Gasto Semanal</SpentTitle>
@@ -99,7 +99,7 @@ const Main = () => {
       </SpentItem>
       <SpentItem
         onPress={() =>
-          navigation.push('AddSpent', {type: TYPES.ADD_DAY_SPENT})
+          navigation.navigate('AddSpent', {type: TYPES.ADD_DAY_SPENT})
         }>
         <>
           <SpentTitle>Gasto Diário</SpentTitle>

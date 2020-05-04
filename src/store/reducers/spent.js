@@ -11,7 +11,7 @@ export const TYPES = {
 export default function (state = {}, action) {
   const date = new Date(Date.now());
   const key = `${date.getMonth()}/${date.getYear()}`;
-  if (!state[key]) {
+  if (!state[key] && TYPES[action.type]) {
     state[key] = {};
   }
   switch (action.type) {
@@ -20,7 +20,7 @@ export default function (state = {}, action) {
         state[key][date.getDate()] = [];
       }
       state[key][date.getDate()].push(action.payload.value);
-      return state;
+      return {...state};
     case TYPES.ADD_WEEK_SPENT:
       const spentPerDayInWeek = action.payload.value / daysInWeek;
       const lastDayInWeek = date.getDate() + daysInWeek;
@@ -30,7 +30,7 @@ export default function (state = {}, action) {
         }
         state[key][i].push(spentPerDayInWeek);
       }
-      return state;
+      return {...state};
     case TYPES.ADD_MONTH_SPENT:
       const spentPerDayInMonth = action.payload.value / daysInMonth;
       const lastDayInMonth = date.getDate() + daysInMonth;
@@ -40,7 +40,7 @@ export default function (state = {}, action) {
         }
         state[key][i].push(spentPerDayInMonth);
       }
-      return state;
+      return {...state};
     default:
       return state;
   }
